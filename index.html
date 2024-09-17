@@ -3,11 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="타나트">
-    <meta property="og:description" content="Tanat05 간편 송금">
-    <meta property="og:image" content="https://tanat.kr/img/tanat.png">
     
-    <title>Tanat05 후원</title>
+    <title>제목을 적어주세요</title>
     <script type="text/javascript" src="qrcode.js"></script>
     <style>
         * {
@@ -79,11 +76,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Tanat05에게 송금하기</h1>
+        <h1>???에게 송금하기</h1>
         <div id="qrcode"></div>
         <button class="button" onclick="refreshPage()">토스로 송금하기</button>
         <div class="account-info">
-            <strong>농협</strong> 3560614797793
+            <strong>은행</strong> 계좌번호
         </div>
         <p>토스로 송금하기는 토스 앱에서만 가능합니다.<br>앱이 설치되어 있지 않다면 설치 후 진행해주세요.</p>
     </div>
@@ -95,7 +92,7 @@
 
         window.onload = function() {
             if (YOUR_AMOUNT_VALUE != '0') {
-                window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793";
+                window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=은행&accountNo=계좌번호"; // 은행&계좌번호 값 변경
             }
         };
 
@@ -107,7 +104,7 @@
 
         // QR 코드 생성
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793",
+            text: "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=은행&accountNo=계좌번호", // 은행&계좌번호 값 변경
             width: 200,
             height: 200,
             colorDark : "#333d4b",
@@ -117,7 +114,7 @@
     </script>
     <script>
         function refreshPage() {
-            window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793";
+            window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=은행&accountNo=계좌번호"; // 은행&계좌번호 값 변경
         }
     </script>
 </body>
