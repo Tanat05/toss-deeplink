@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="타나트">
+    <meta property="og:description" content="Tanat05 간편 송금">
+    <meta property="og:image" content="https://tanat.kr/img/tanat.png">
+    
+    <title>Tanat05 후원</title>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #333d4b;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #qrcode {
+            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+        }
+        #qrcode img {
+            max-width: 100%;
+            height: auto;
+        }
+        .button {
+            background-color: #3182f6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #1c6fef;
+        }
+        p {
+            color: #6b7684;
+            font-size: 14px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+        .account-info {
+            background-color: #f2f4f6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333d4b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tanat05에게 송금하기</h1>
+        <div id="qrcode"></div>
+        <button class="button" onclick="refreshPage()">토스로 송금하기</button>
+        <div class="account-info">
+            <strong>농협</strong> 3560614797793
+        </div>
+        <p>토스로 송금하기는 토스 앱에서만 가능합니다.<br>앱이 설치되어 있지 않다면 설치 후 진행해주세요.</p>
+    </div>
+
+    <script type="text/javascript">
+        const urlParams = new URLSearchParams(window.location.search);
+        const firstParam = window.location.search.substring(1); // '?' 다음에 오는 첫 번째 값을 가져옴
+        const YOUR_AMOUNT_VALUE = firstParam || '0';
+
+        window.onload = function() {
+            if (YOUR_AMOUNT_VALUE != '0') {
+                window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793";
+            }
+        };
+
+
+        if (YOUR_AMOUNT_VALUE!=0) {
+            const formattedAmount = parseInt(YOUR_AMOUNT_VALUE, 10).toLocaleString();
+            document.querySelector('h1').textContent = `${formattedAmount}원 보내주세요`;
+        }
+
+        // QR 코드 생성
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793",
+            width: 200,
+            height: 200,
+            colorDark : "#333d4b",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+    <script>
+        function refreshPage() {
+            window.location.href = "supertoss://send?amount=" + YOUR_AMOUNT_VALUE + "&bank=농협&accountNo=3560614797793";
+        }
+    </script>
+</body>
+</html>
